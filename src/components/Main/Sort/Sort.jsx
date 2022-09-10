@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+
+const sortedList = [
+  { title: "популярністю", id: 0 },
+  { title: "ціною", id: 1 },
+];
 
 const Sort = () => {
+  const [isOpenPopUp, setIsOpenPopUp] = useState(false);
+  const [ActiveSort, setActiveSort] = useState(0);
+
+  const dropPopUp = () => {
+    setIsOpenPopUp(!isOpenPopUp);
+  };
+
+  const chooseActiveSort = (index) => {
+    setActiveSort(index);
+    setIsOpenPopUp(false);
+  };
+
   return (
     <div className="sort">
-      <div className="sort__label">
+      <div className="sort__label" onClick={dropPopUp}>
         <svg
           width="10"
           height="6"
@@ -16,16 +33,24 @@ const Sort = () => {
             fill="#2C2C2C"
           />
         </svg>
-        <b>Сортировка по:</b>
-        <span>популярности</span>
+        <b>Сортування за:</b>
+        <span>{sortedList[ActiveSort].title}</span>
       </div>
-      <div className="sort__popup">
-        <ul>
-          <li className="active">популярности</li>
-          <li>цене</li>
-          <li>алфавиту</li>
-        </ul>
-      </div>
+      {isOpenPopUp && (
+        <div className="sort__popup">
+          <ul>
+            {sortedList.map((sort) => (
+              <li
+                key={sort.id}
+                className={ActiveSort === sort.id ? "active" : ""}
+                onClick={() => chooseActiveSort(sort.id)}
+              >
+                {sort.title}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
