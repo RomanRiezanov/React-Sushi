@@ -1,68 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Categories from "./Categories/Categories";
 import Sort from "./Sort/Sort";
 import SushiItem from "./Sushi-Item/SushiItem";
 
-const sushiItems = [
-  {
-    title: "Сет Банзай",
-    src: "set_banzai.png",
-    price: 399,
-    alt: "banzai",
-    id: 1,
-  },
-  {
-    title: "Сет Які-суші",
-    src: "set_yaki.png",
-    price: 299,
-    alt: "yaki",
-    id: 2,
-  },
-  {
-    title: "Сет Саймон",
-    src: "set_saimon.png",
-    price: 399,
-    alt: "saimon",
-    id: 3,
-  },
-  {
-    title: "Сет Кайфуй",
-    src: "set_kaifui.png",
-    price: 369,
-    alt: "kaifui",
-    id: 4,
-  },
-  {
-    title: "Сет Хот",
-    src: "set_hot.png",
-    price: 389,
-    alt: "hot",
-    id: 5,
-  },
-  {
-    title: "BEST SET",
-    src: "set_best.png",
-    price: 429,
-    alt: "best",
-    id: 6,
-  },
-  {
-    title: "Сет Кілограм",
-    src: "set_kilogram.png",
-    price: 439,
-    alt: "kilogram",
-    id: 7,
-  },
-  {
-    title: "Сет Сакура",
-    src: "set_sakura.png",
-    price: 389,
-    alt: "sakura",
-    id: 8,
-  },
-];
+//https://631c632a1b470e0e12009f89.mockapi.io/sushi-sets
 
 const Main = () => {
+  const [sushiItems, setSushiItems] = useState([]);
+  useEffect(() => {
+    fetch("https://631c632a1b470e0e12009f89.mockapi.io/sushi-sets")
+      .then((res) => res.json())
+      .then((json) => setSushiItems(json));
+  }, []);
+
   return (
     <div className="content">
       <div className="container">
