@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import classes from "./Sort.module.scss";
 
 const sortedList = [
   { title: "популярністю", id: 0 },
@@ -19,8 +20,8 @@ const Sort = () => {
   };
 
   return (
-    <div className="sort">
-      <div className="sort__label" onClick={dropPopUp}>
+    <div className={classes.sort}>
+      <div className={classes.sort__label} onClick={dropPopUp}>
         <svg
           width="10"
           height="6"
@@ -37,7 +38,7 @@ const Sort = () => {
         <span>{sortedList[ActiveSort].title}</span>
       </div>
       {isOpenPopUp && (
-        <div className="sort__popup">
+        <div className={classes.sort__popup}>
           <ul>
             {sortedList.map((sort) => (
               <li

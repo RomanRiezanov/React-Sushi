@@ -1,0 +1,41 @@
+.content {
+  padding: 40px 0;
+}
+
+.cart {
+  &__empty {
+    margin: 0 auto;
+    text-align: center;
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 145.4%;
+      letter-spacing: 0.01em;
+      color: #777777;
+    }
+
+    icon {
+      position: relative;
+      top: 2px;
+    }
+
+    img {
+      display: block;
+      width: 300px;
+      margin: 45px auto 60px;
+    }
+
+    .button--black {
+      padding: 12px 0 14px;
+      width: 230px;
+      margin: 0 auto;
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
+}

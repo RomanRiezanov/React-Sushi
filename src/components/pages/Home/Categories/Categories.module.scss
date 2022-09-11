@@ -2,9 +2,15 @@
 @import "../../../../scss/shared/mixins.scss";
 
 .categories {
+  width: 100%;
+  display: flex;
+  overflow: auto;
   ul {
     display: flex;
-
+    overflow: auto;
+    @media (max-width: $tablet) {
+      padding-bottom: 15px;
+    }
     li {
       background-color: #f9f9f9;
       padding: 13px 30px;

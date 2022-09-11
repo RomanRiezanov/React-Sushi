@@ -136,6 +136,9 @@
     align-items: center;
     line-height: 23px;
     padding: 12px 25px;
+    @media (max-width: $mobile) {
+      padding: 5px 15px;
+    }
 
     svg {
       margin-right: 8px;

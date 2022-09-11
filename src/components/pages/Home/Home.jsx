@@ -3,6 +3,7 @@ import Categories from "./Categories/Categories";
 import Sort from "./Sort/Sort";
 import Skeleton from "./Sushi-Item/Skeleton/Skeleton";
 import SushiItem from "./Sushi-Item/SushiItem";
+import classes from "./Home.module.scss";
 
 const Home = () => {
   const [sushiItems, setSushiItems] = useState([]);
@@ -17,14 +18,14 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="content">
+    <div className={classes.content}>
       <div className="container">
-        <div className="content__top">
+        <div className={classes.content__top}>
           <Categories />
           <Sort />
         </div>
-        <h2 className="content__title">Всі сети</h2>
-        <div className="content__items">
+        <h2 className={classes.content__title}>Всі сети</h2>
+        <div className={classes.content__items}>
           {isLoading
             ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
             : sushiItems.map((sushiSet) => (
