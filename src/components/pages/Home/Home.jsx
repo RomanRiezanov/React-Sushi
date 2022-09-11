@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Categories from "./Categories/Categories";
 import Sort from "./Sort/Sort";
-import Skeleton from "./Sushi-Item/Skeleton";
+import Skeleton from "./Sushi-Item/Skeleton/Skeleton";
 import SushiItem from "./Sushi-Item/SushiItem";
 
 const Home = () => {
