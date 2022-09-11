@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import classes from "./Categories.module.scss";
 
 const categories = [
   { title: "Всі", id: 1 },
@@ -16,12 +17,12 @@ const Categories = () => {
   };
 
   return (
-    <div className="categories">
+    <div className={classes.categories}>
       <ul>
         {categories.map((category) => (
           <li
             key={category.id}
-            className={activeIndex === category.id ? "active" : ""}
+            className={activeIndex === category.id ? classes.active : ""}
             onClick={() => clickCategory(category.id)}
           >
             {category.title}

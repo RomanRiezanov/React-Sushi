@@ -4,7 +4,7 @@ import Header from "./components/Header/Header";
 import Cart from "./components/pages/Cart/Cart";
 import Error404 from "./components/pages/Error404/Error404";
 import Home from "./components/pages/Home/Home";
-import "./scss/app.scss";
+import "./scss/globals.scss";
 
 const App = () => {
   return (

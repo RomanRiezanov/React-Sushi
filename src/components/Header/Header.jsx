@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import classes from "./Header.module.scss";
 
 const Header = () => {
   return (
-    <div className="header">
-      <div className="container">
-        <div className="header__logo">
+    <div className={classes.header}>
+      <div className={`${classes.container} container`}>
+        <div className={classes.header__logo}>
           <img
             width={50}
             height={50}
@@ -17,7 +18,7 @@ const Header = () => {
             <p>Найсмачніші суші у всесвіті</p>
           </div>
         </div>
-        <div className="header__cart">
+        <div>
           <Link to="/cart" className="button button--cart">
             <span>₴</span>
             <div className="button__delimiter"></div>

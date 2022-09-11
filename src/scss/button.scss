@@ -1,4 +1,5 @@
-@import "../variables";
+@import "./shared/variables.scss";
+@import "./shared/mixins.scss";
 
 .button {
   display: inline-block;

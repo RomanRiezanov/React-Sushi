@@ -1,6 +1,7 @@
-@import "../variables";
+@import "../../../../scss/shared/variables.scss";
+@import "../../../../scss/shared/mixins.scss";
 
-.sushi-block {
+.sushiBlock {
   width: 280px;
   text-align: center;
   margin-bottom: 65px;

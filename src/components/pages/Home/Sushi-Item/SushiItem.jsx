@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import classes from "./SushiItem.module.scss";
 
 const SUSHI_SET_SRC = "./assets/img/sets/";
 
@@ -10,26 +11,26 @@ const SushiItem = ({ title, src, price, alt }) => {
   };
 
   return (
-    <div className="sushi-block">
+    <div className={classes.sushiBlock}>
       <img
-        className="sushi-block__image"
+        className={classes.sushiBlock__image}
         src={`${SUSHI_SET_SRC}${src}`}
         alt={`sushi-set-${alt}`}
       />
-      <h4 className="sushi-block__title">{title}</h4>
-      <div className="sushi-block__selector">
+      <h4 className={classes.sushiBlock__title}>{title}</h4>
+      <div className={classes.sushiBlock__selector}>
         <ul>
-          <li className="active">тонкое</li>
+          <li className={classes.active}>тонкое</li>
           <li>традиционное</li>
         </ul>
         <ul>
-          <li className="active">26 см.</li>
+          <li className={classes.active}>26 см.</li>
           <li>30 см.</li>
           <li>40 см.</li>
         </ul>
       </div>
-      <div className="sushi-block__bottom">
-        <div className="sushi-block__price">{price} ₴</div>
+      <div className={classes.sushiBlock__bottom}>
+        <div className={classes.sushiBlock__price}>{price} ₴</div>
         <button
           onClick={addSushiSet}
           className="button button--outline button--add"

@@ -1,4 +1,5 @@
-@import "../../../scss/variables";
+@import "../../../scss/shared/variables.scss";
+@import "../../../scss/shared/mixins.scss";
 
 .page_404 {
   padding: 40px 0;
