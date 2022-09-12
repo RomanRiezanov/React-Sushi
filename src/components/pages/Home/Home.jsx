@@ -8,21 +8,31 @@ import classes from "./Home.module.scss";
 const Home = () => {
   const [sushiItems, setSushiItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeSort, setActiveSort] = useState(0);
+
   useEffect(() => {
-    fetch("https://631c632a1b470e0e12009f89.mockapi.io/sushi-sets")
+    fetch(
+      "https://631c632a1b470e0e12009f89.mockapi.io/sushi-sets?category=" +
+        activeIndex
+    )
       .then((res) => res.json())
       .then((json) => {
         setSushiItems(json);
         setIsLoading(false);
       });
-  }, []);
+  }, [activeIndex]);
+
+  const clickCategory = (index) => {
+    setActiveIndex(index);
+  };
 
   return (
     <div className={classes.content}>
       <div className="container">
         <div className={classes.content__top}>
-          <Categories />
-          <Sort />
+          <Categories activeIndex={activeIndex} clickCategory={clickCategory} />
+          <Sort activeSort={activeSort} setActiveSort={setActiveSort} />
         </div>
         <h2 className={classes.content__title}>Всі сети</h2>
         <div className={classes.content__items}>

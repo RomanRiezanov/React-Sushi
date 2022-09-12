@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./Categories.module.scss";
 
 const categories = [
@@ -9,13 +9,7 @@ const categories = [
   { title: "Акції", id: 5 },
 ];
 
-const Categories = () => {
-  const [activeIndex, setActiveIndex] = useState(1);
-
-  const clickCategory = (index) => {
-    setActiveIndex(index);
-  };
-
+const Categories = ({ activeIndex, clickCategory }) => {
   return (
     <div className={classes.categories}>
       <ul>

@@ -6,10 +6,8 @@ const sortedList = [
   { title: "ціною", id: 1 },
 ];
 
-const Sort = () => {
+const Sort = ({ activeSort, setActiveSort }) => {
   const [isOpenPopUp, setIsOpenPopUp] = useState(false);
-  const [ActiveSort, setActiveSort] = useState(0);
-
   const dropPopUp = () => {
     setIsOpenPopUp(!isOpenPopUp);
   };
@@ -35,7 +33,7 @@ const Sort = () => {
           />
         </svg>
         <b>Сортування за:</b>
-        <span>{sortedList[ActiveSort].title}</span>
+        <span>{sortedList[activeSort].title}</span>
       </div>
       {isOpenPopUp && (
         <div className={classes.sort__popup}>
@@ -43,7 +41,7 @@ const Sort = () => {
             {sortedList.map((sort) => (
               <li
                 key={sort.id}
-                className={ActiveSort === sort.id ? "active" : ""}
+                className={activeSort === sort.id ? "active" : ""}
                 onClick={() => chooseActiveSort(sort.id)}
               >
                 {sort.title}
