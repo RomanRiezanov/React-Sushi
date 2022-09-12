@@ -161,7 +161,7 @@
       justify-content: space-between;
       margin-top: 40px;
       @media (max-width: $small-mobile) {
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: center;
       }
       .go_back_btn {
@@ -171,7 +171,7 @@
         width: 210px;
         border-color: darken($color: $gray-line, $amount: 10);
         @media (max-width: $small-mobile) {
-          margin-bottom: 15px;
+          margin-top: 15px;
         }
         span {
           color: darken($color: $gray-line, $amount: 20);
@@ -197,7 +197,7 @@
         font-size: 16px;
         font-weight: 600;
         width: 210px;
-        padding: 16px;
+        padding: 10px;
       }
     }
   }
