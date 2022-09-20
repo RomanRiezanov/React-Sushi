@@ -34,9 +34,8 @@ const sortedList = [
   },
 ];
 
-const Sort = () => {
+const Sort = ({ activeSort, setActiveSort }) => {
   const [isOpenPopUp, setIsOpenPopUp] = useState(false);
-  const [activeSort, setActiveSort] = useState(0);
 
   const dropPopUp = () => {
     setIsOpenPopUp(!isOpenPopUp);
