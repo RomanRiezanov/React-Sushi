@@ -1,0 +1,290 @@
+[
+  {
+    "title": "Сет Банзай",
+    "src": "sets/set_banzai.png",
+    "price": 399,
+    "compound": "Рол 'Філадельфія сурімі', рол 'Філадельфія з лососем та тобіко', 'Сирний рол з крабом', рол 'Макі з лососем', рол 'Макі з огірком', васабі, імбир, соєвий соус...",
+    "alt": "set-banzai",
+    "weight": 915,
+    "amount": 36,
+    "id": 1,
+    "category": 2,
+    "rating": 10
+  },
+  {
+    "title": "Сет Які-суші",
+    "src": "sets/set_yaki.png",
+    "price": 299,
+    "compound": "Рол 'Каліфорнія з лоссосем', рол 'Запечений з лососем та пармезаном', рол 'Запечений з лососем', рол 'Макі з огірком', імбир, васабі, соєвий соус...",
+    "alt": "set-yaki",
+    "weight": 780,
+    "amount": 30,
+    "id": 2,
+    "category": 2,
+    "rating": 8
+  },
+  {
+    "title": "Сет Саймон",
+    "src": "sets/set_saimon.png",
+    "price": 399,
+    "compound": "Рол 'Філадельфія в кунжуті з лососем', рол 'Філадельфія мікс', рол 'Сирний рол з лососем', рол 'макі з лососем', соєвий соус, імбир, васабі...",
+    "alt": "set-saimon",
+    "weight": 800,
+    "amount": 30,
+    "id": 3,
+    "category": 2,
+    "rating": 5
+  },
+  {
+    "title": "Сет Кайфуй",
+    "src": "sets/set_kaifui.png",
+    "price": 369,
+    "compound": "Рол 'Кайфуй', рол 'Філадельфія', рол 'Сирний з лососем',  рол 'Філадельфія в кунжуті з лососем', імбир, васабі, соєвий соус...",
+    "alt": "set-kaifui",
+    "weight": 945,
+    "amount": 32,
+    "id": 4,
+    "category": 2,
+    "rating": 7
+  },
+  {
+    "title": "Сет Хот",
+    "src": "sets/set_hot.png",
+    "price": 389,
+    "compound": "Рол 'Запечений з лососем', рол 'Запечений з лососем та сиром Чедер', рол 'Запечений зі смаженим лососем', васабі, імбир, соєвий соус...",
+    "alt": "set-hot",
+    "weight": 735,
+    "amount": 24,
+    "id": 5,
+    "category": 2,
+    "rating": 9
+  },
+  {
+    "title": "BEST SET",
+    "src": "sets/set_best.png",
+    "price": 429,
+    "compound": "Рол 'Філадельфія', рол 'Філадельфія в кунжуті з лососем', рол 'Запечений з лососем', рол 'Запечений з лососем та сиром Чеддер', імбир, васабі, соєвий соус...",
+    "alt": "best set",
+    "weight": 965,
+    "amount": 32,
+    "id": 6,
+    "category": 2,
+    "rating": 9
+  },
+  {
+    "title": "Кілограм Сет",
+    "src": "sets/set_kilogram.png",
+    "price": 439,
+    "compound": "Рол 'Філадельфія', рол 'Кайфуй', рол 'Філадельфія сурімі', рол 'Запечений з лососем', рол 'Макі з лососем', імбир, васабі, соєвий соус...",
+    "alt": "set kilogram",
+    "weight": 1025,
+    "amount": 38,
+    "id": 7,
+    "category": 2,
+    "rating": 8
+  },
+  {
+    "title": "Сет Сакура",
+    "src": "sets/set_sakura.png",
+    "price": 389,
+    "compound": "Рол 'Сакура', рол 'Філадельфія', рол 'Філадельфія в кунжуті з лососем', рол 'Макі з лососем', імбир, васабі, соєвий соус...",
+    "alt": "set sakura",
+    "weight": 805,
+    "amount": 30,
+    "id": 8,
+    "category": 2,
+    "rating": 6
+  },
+  {
+    "title": "Рол Філадельфія з креветкою",
+    "src": "rolls/roll_philadelphia-krevetka.png",
+    "price": 139,
+    "compound": "Рис, норі, креветка, крем-сир, огірок, ікра тобіко, імбир, васабі, соєвий соус...",
+    "alt": "Roll Philadelphia Krevetka",
+    "weight": 220,
+    "amount": 8,
+    "id": 9,
+    "category": 3,
+    "rating": 5
+  },
+  {
+    "title": "Рол Дракон Люкс",
+    "src": "rolls/roll_dragon-lux.png",
+    "price": 139,
+    "compound": "Рис, норі, огірок, лосось, крем-сир, авокадо,&nbsp;ікра тобіко, імбир, васабі, соєвий соус...",
+    "alt": "Roll Drakon Lux",
+    "weight": 260,
+    "amount": 8,
+    "id": 10,
+    "category": 3,
+    "rating": 5
+  },
+  {
+    "title": "Рол Самурай",
+    "src": "rolls/roll_samurai.png",
+    "price": 139,
+    "compound": "Рис, норі, сир Чеддер, лосось, ікра тобіко, крем-сир, імбир, васабі, соєвий соус...",
+    "alt": "Roll Samurai",
+    "weight": 235,
+    "amount": 8,
+    "id": 11,
+    "category": 3,
+    "rating": 4
+  },
+  {
+    "title": "Рол Фудзіяма",
+    "src": "rolls/roll_fudziyama.png",
+    "price": 129,
+    "compound": "Рис, норі, мідія, крем-сир, лосось, імбир, васабі, соєвий соус.. ",
+    "alt": "Roll Fudziyama",
+    "weight": 240,
+    "amount": 8,
+    "id": 12,
+    "category": 3,
+    "rating": 5
+  },
+  {
+    "title": "Дитячий рол Рокфор",
+    "src": "rolls/roll_detskiy_rokfor.png",
+    "price": 99,
+    "compound": "Рис, норі, сир Чедер, огірок, крем-сир, японський омлет, імбир, соєвий соус...",
+    "alt": "Roll Detskiy Rokfor",
+    "weight": 180,
+    "amount": 8,
+    "id": 13,
+    "category": 3,
+    "rating": 3
+  },
+  {
+    "title": "Дитячий рол Посіпака",
+    "src": "rolls/roll_detskiy_posipaka.png",
+    "price": 89,
+    "compound": "Рис, норі, сир Чедер, сурімі, огірок, ікра тобіко, імбир, соєвий соус...",
+    "alt": "Roll Detskiy Posipaka",
+    "weight": 165,
+    "amount": 8,
+    "id": 14,
+    "category": 3,
+    "rating": 4
+  },
+  {
+    "title": "Макі рол з тунцем",
+    "src": "rolls/roll_maki-tunec.png",
+    "price": 79,
+    "compound": "Рис, норі, тунець, імбир, васабі, соєвий соус...",
+    "alt": "Maki Roll z tuncem",
+    "weight": 115,
+    "amount": 8,
+    "id": 15,
+    "category": 3,
+    "rating": 3
+  },
+  {
+    "title": "Pepsi 1L",
+    "src": "drinks/pepsi.jpg",
+    "price": 35,
+    "alt": "Pepsi",
+    "id": 16,
+    "category": 4,
+    "rating": 3
+  },
+  {
+    "title": "Mirinda 1L",
+    "src": "drinks/mirinda.jpeg",
+    "price": 35,
+    "alt": "Mirinda",
+    "id": 17,
+    "category": 4,
+    "rating": 3
+  },
+  {
+    "title": "7up 1L",
+    "src": "drinks/7up.jpg",
+    "price": 35,
+    "alt": "7 up",
+    "id": 18,
+    "category": 4,
+    "rating": 3
+  },
+  {
+    "title": "Моршинська 0.5L",
+    "src": "drinks/voda.jpeg",
+    "price": 20,
+    "alt": "Morshinska",
+    "id": 19,
+    "category": 4,
+    "rating": 2
+  },
+  {
+    "title": "Сік Sandora Ананас 1L",
+    "src": "drinks/sandora-ananas.jpeg",
+    "price": 69,
+    "alt": "Sik Sandora Ananas",
+    "id": 20,
+    "category": 4,
+    "rating": 2
+  },
+  {
+    "title": "Сік Sandora Гранат 1L",
+    "src": "drinks/sandora-granat.jpeg",
+    "price": 69,
+    "alt": "Sik Sandora Granat",
+    "id": 21,
+    "category": 4,
+    "rating": 1
+  },
+  {
+    "title": "Сік Sandora Mango 1L",
+    "src": "drinks/sandora-mango.jpeg",
+    "price": 69,
+    "alt": "Sik Sandora Mango",
+    "id": 22,
+    "category": 4,
+    "rating": 3
+  },
+  {
+    "title": "Сік Sandora Персик 1L",
+    "src": "drinks/sandora-persik.jpeg",
+    "price": 69,
+    "alt": "Sik Sandora Persik",
+    "id": 23,
+    "category": 4,
+    "rating": 3
+  },
+  {
+    "title": "Сік Sandora Томат 1L",
+    "src": "drinks/sandora-tomat.png",
+    "price": 69,
+    "alt": "Sik Sandora Tomat",
+    "id": 24,
+    "category": 4,
+    "rating": 3
+  },
+  {
+    "title": "Сік Sandora Виноград 1L",
+    "src": "drinks/sandora-vinograd.jpeg",
+    "price": 69,
+    "alt": "Sik Sandora Vinograd",
+    "id": 25,
+    "category": 4,
+    "rating": 1
+  },
+  {
+    "title": "Пиво Hoegaarden 0.5L",
+    "src": "drinks/hoegaarden.jpeg",
+    "price": 109,
+    "alt": "Pivo Hoegaarden",
+    "id": 26,
+    "category": 4,
+    "rating": 1
+  },
+  {
+    "title": "Пиво Corona Extra 0.5L",
+    "src": "drinks/corona_extra.jpeg",
+    "price": 75,
+    "alt": "Pivo Corona Extra",
+    "id": 27,
+    "category": 4,
+    "rating": 1
+  }
+]
