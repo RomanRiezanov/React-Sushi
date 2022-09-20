@@ -1,13 +1,43 @@
 import React, { useState } from "react";
 import classes from "./Sort.module.scss";
 
+const ARROW_SRC = "./assets/img/arrows/";
+
 const sortedList = [
-  { title: "популярністю", id: 0 },
-  { title: "ціною", id: 1 },
+  {
+    title: "популярністю",
+    id: 0,
+    sortType: "rating",
+    sortOrder: "desc",
+    arrow: "arrow-bottom.png",
+  },
+  {
+    title: "популярністю",
+    id: 1,
+    sortType: "rating",
+    sortOrder: "asc",
+    arrow: "arrow-top.png",
+  },
+  {
+    title: "ціною",
+    id: 2,
+    sortType: "price",
+    sortOrder: "desc",
+    arrow: "arrow-bottom.png",
+  },
+  {
+    title: "ціною",
+    id: 3,
+    sortType: "price",
+    sortOrder: "asc",
+    arrow: "arrow-top.png",
+  },
 ];
 
-const Sort = ({ activeSort, setActiveSort }) => {
+const Sort = () => {
   const [isOpenPopUp, setIsOpenPopUp] = useState(false);
+  const [activeSort, setActiveSort] = useState(0);
+
   const dropPopUp = () => {
     setIsOpenPopUp(!isOpenPopUp);
   };
@@ -33,7 +63,12 @@ const Sort = ({ activeSort, setActiveSort }) => {
           />
         </svg>
         <b>Сортування за:</b>
-        <span>{sortedList[activeSort].title}</span>
+        <span>
+          {activeSort.title}
+          <div className={classes.arrowBlock}>
+            <img src={`${ARROW_SRC}${activeSort.arrow}`} alt="arrow" />
+          </div>
+        </span>
       </div>
       {isOpenPopUp && (
         <div className={classes.sort__popup}>
@@ -41,10 +76,15 @@ const Sort = ({ activeSort, setActiveSort }) => {
             {sortedList.map((sort) => (
               <li
                 key={sort.id}
-                className={activeSort === sort.id ? "active" : ""}
-                onClick={() => chooseActiveSort(sort.id)}
+                className={
+                  activeSort.sortType === sort.sortType ? "active" : ""
+                }
+                onClick={() => chooseActiveSort(sort)}
               >
                 {sort.title}
+                <div className={classes.arrowBlock}>
+                  <img src={`${ARROW_SRC}${sort.arrow}`} alt="arrow" />
+                </div>
               </li>
             ))}
           </ul>

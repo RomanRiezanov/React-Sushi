@@ -17,6 +17,7 @@
     }
 
     span {
+      display: flex;
       color: $orange;
       border-bottom: 1px dashed $orange;
       cursor: pointer;
@@ -32,11 +33,11 @@
     border-radius: 10px;
     overflow: hidden;
     padding: 10px 0;
-    width: 160px;
 
     ul {
       overflow: hidden;
       li {
+        display: flex;
         padding: 12px 20px;
         cursor: pointer;
 
@@ -51,5 +52,13 @@
         }
       }
     }
+  }
+}
+
+.arrowBlock {
+  width: 20px;
+  margin-left: 5px;
+  img {
+    width: 100%;
   }
 }
