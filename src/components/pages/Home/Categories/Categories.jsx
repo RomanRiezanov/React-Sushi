@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import classes from "./Categories.module.scss";
 
 const categories = [
   { title: "Всі", id: 1 },
@@ -8,20 +9,14 @@ const categories = [
   { title: "Акції", id: 5 },
 ];
 
-const Categories = () => {
-  const [activeIndex, setActiveIndex] = useState(1);
-
-  const clickCategory = (index) => {
-    setActiveIndex(index);
-  };
-
+const Categories = ({ activeIndex, clickCategory }) => {
   return (
-    <div className="categories">
+    <div className={classes.categories}>
       <ul>
         {categories.map((category) => (
           <li
             key={category.id}
-            className={activeIndex === category.id ? "active" : ""}
+            className={activeIndex === category.id ? classes.active : ""}
             onClick={() => clickCategory(category.id)}
           >
             {category.title}

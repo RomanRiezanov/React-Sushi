@@ -1,18 +1,24 @@
-@import "../variables";
+@import "../../scss/shared/variables.scss";
+@import "../../scss/shared/mixins.scss";
 
 .header {
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
-
+  @media (max-width: $small-mobile) {
+    padding: 20px 0;
+  }
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: $small-mobile) {
+      flex-direction: column;
+    }
   }
 
   &__logo {
     display: flex;
-
+    margin-bottom: 5px;
     img {
       margin-right: 15px;
     }

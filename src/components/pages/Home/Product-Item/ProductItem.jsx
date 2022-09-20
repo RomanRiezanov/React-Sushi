@@ -1,35 +1,39 @@
 import React, { useState } from "react";
+import classes from "./ProductItem.module.scss";
 
-const SUSHI_SET_SRC = "./assets/img/sets/";
+const SUSHI_SET_SRC = "./assets/img/";
 
-const SushiItem = ({ title, src, price, alt }) => {
+const SushiItem = ({ title, src, price, compound, alt, weight, amount }) => {
   const [sushiCount, setSushiCount] = useState(0);
 
   const addSushiSet = () => {
     setSushiCount((prev) => prev + 1);
   };
 
+  const truncate = (text) =>
+    text.length > 100 ? `${text.substring(0, 100)}...` : text;
+
   return (
-    <div className="sushi-block">
+    <div className={classes.sushiBlock}>
       <img
-        className="sushi-block__image"
+        className={classes.sushiBlock__image}
         src={`${SUSHI_SET_SRC}${src}`}
         alt={`sushi-set-${alt}`}
       />
-      <h4 className="sushi-block__title">{title}</h4>
-      <div className="sushi-block__selector">
-        <ul>
-          <li className="active">тонкое</li>
-          <li>традиционное</li>
-        </ul>
-        <ul>
-          <li className="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
-        </ul>
-      </div>
-      <div className="sushi-block__bottom">
-        <div className="sushi-block__price">{price} ₴</div>
+      <h4 className={classes.sushiBlock__title}>{title}</h4>
+      {compound && (
+        <div className={classes.sushiBlock__description}>
+          <p>
+            <span>Склад: </span>
+            {truncate(compound)}
+          </p>
+          <span>
+            {weight}гр.{amount}шт.
+          </span>
+        </div>
+      )}
+      <div className={classes.sushiBlock__bottom}>
+        <div className={classes.sushiBlock__price}>{price} ₴</div>
         <button
           onClick={addSushiSet}
           className="button button--outline button--add"
