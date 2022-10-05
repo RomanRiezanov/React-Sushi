@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./Header.module.scss";
+import Search from "./Search/Search";
 
 const Header = () => {
   return (
@@ -18,6 +19,7 @@ const Header = () => {
             <p>Найсмачніші суші у всесвіті</p>
           </div>
         </div>
+        <Search />
         <div>
           <Link to="/cart" className="button button--cart">
             <span>₴</span>

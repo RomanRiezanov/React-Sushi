@@ -4,6 +4,8 @@ import Sort from "./Sort/Sort";
 import Skeleton from "./Product-Item/Skeleton/Skeleton";
 import ProductItem from "./Product-Item/ProductItem";
 import classes from "./Home.module.scss";
+import { useContext } from "react";
+import SearchContext from "../../../Context/context";
 
 const Home = () => {
   const [sushiItems, setSushiItems] = useState([]);
@@ -16,6 +18,11 @@ const Home = () => {
     sortOrder: "desc",
     arrow: "arrow-bottom.png",
   });
+  const searchQuery = useContext(SearchContext).searchQuery;
+
+  const filteredProducts = sushiItems.filter((product) =>
+    product.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   useEffect(() => {
     setIsLoading(true);
@@ -46,8 +53,8 @@ const Home = () => {
         <div className={classes.content__items}>
           {isLoading
             ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-            : sushiItems.map((sushiSet) => (
-                <ProductItem key={sushiSet.id} {...sushiSet} />
+            : filteredProducts.map((product) => (
+                <ProductItem key={product.id} {...product} />
               ))}
         </div>
       </div>
