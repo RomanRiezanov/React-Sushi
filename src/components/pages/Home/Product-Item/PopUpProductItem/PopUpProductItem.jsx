@@ -1,46 +1,59 @@
 import React, { useState } from "react";
-import PopUpProductItem from "./PopUpProductItem/PopUpProductItem";
-import classes from "./ProductItem.module.scss";
+import classes from "./PopUpProductItem.module.scss";
 
 const SUSHI_SET_SRC = "./assets/img/";
 
-const SushiItem = ({ title, src, price, compound, alt, weight, amount }) => {
+const PopUpProductItem = ({
+  title,
+  src,
+  price,
+  compound,
+  alt,
+  weight,
+  amount,
+  setShowPopUp,
+  active,
+}) => {
   const [sushiCount, setSushiCount] = useState(0);
-  const [showPopUp, setShowPopUp] = useState(false);
 
   const addSushiSet = () => {
     setSushiCount((prev) => prev + 1);
   };
 
-  const showModal = () => {
-    setShowPopUp(true);
-  };
-
-  const truncate = (text) =>
-    text.length > 100 ? `${text.substring(0, 100)}...` : text;
-
   return (
-    <>
-      <div className={classes.sushiBlock} onClick={() => showModal()}>
+    <div
+      className={
+        active
+          ? `${classes.productBlock} ${classes.active}`
+          : `${classes.productBlock}`
+      }
+      onClick={() => setShowPopUp(false)}
+    >
+      <div
+        className={
+          active ? `${classes.content} ${classes.active}` : `${classes.content}`
+        }
+        onClick={(e) => e.stopPropagation()}
+      >
         <img
-          className={classes.sushiBlock__image}
+          className={classes.image}
           src={`${SUSHI_SET_SRC}${src}`}
           alt={`sushi-set-${alt}`}
         />
-        <h4 className={classes.sushiBlock__title}>{title}</h4>
+        <h4 className={classes.title}>{title}</h4>
         {compound && (
-          <div className={classes.sushiBlock__description}>
+          <div className={classes.description}>
             <p>
               <span>Склад: </span>
-              {truncate(compound)}
+              {compound}
             </p>
             <span>
               {weight}гр.{amount}шт.
             </span>
           </div>
         )}
-        <div className={classes.sushiBlock__bottom}>
-          <div className={classes.sushiBlock__price}>{price} ₴</div>
+        <div className={classes.bottom}>
+          <div className={classes.price}>{price} ₴</div>
           <button
             onClick={addSushiSet}
             className="button button--outline button--add"
@@ -62,18 +75,8 @@ const SushiItem = ({ title, src, price, compound, alt, weight, amount }) => {
           </button>
         </div>
       </div>
-      <PopUpProductItem
-        title={title}
-        src={src}
-        price={price}
-        compound={compound}
-        alt={alt}
-        weight={weight}
-        setShowPopUp={setShowPopUp}
-        active={showPopUp}
-      />
-    </>
+    </div>
   );
 };
 
-export default SushiItem;
+export default PopUpProductItem;
