@@ -6,18 +6,14 @@ import ProductItem from "./Product-Item/ProductItem";
 import classes from "./Home.module.scss";
 import { useContext } from "react";
 import SearchContext from "../../../Context/context";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategoryId } from "../../../redux/slices/filterSlice";
 
 const Home = () => {
   const [sushiItems, setSushiItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeIndex, setActiveIndex] = useState(1);
-  const [activeSort, setActiveSort] = useState({
-    title: "популярністю",
-    id: 0,
-    sortType: "rating",
-    sortOrder: "desc",
-    arrow: "arrow-bottom.png",
-  });
+  const { activeIndex, activeSort } = useSelector((state) => state.filter);
+  const dispatch = useDispatch();
   const searchQuery = useContext(SearchContext).searchQuery;
 
   const filteredProducts = sushiItems.filter((product) =>
@@ -39,7 +35,7 @@ const Home = () => {
   }, [activeIndex, activeSort]);
 
   const clickCategory = (index) => {
-    setActiveIndex(index);
+    dispatch(setCategoryId(index));
   };
 
   return (
@@ -47,7 +43,7 @@ const Home = () => {
       <div className="container">
         <div className={classes.content__top}>
           <Categories activeIndex={activeIndex} clickCategory={clickCategory} />
-          <Sort activeSort={activeSort} setActiveSort={setActiveSort} />
+          <Sort activeSort={activeSort} />
         </div>
         <h2 className={classes.content__title}>Всі сети</h2>
         <div className={classes.content__items}>
