@@ -6,6 +6,9 @@ import ProductItem from "./Product-Item/ProductItem";
 import classes from "./Home.module.scss";
 import { useContext } from "react";
 import SearchContext from "../../../Context/context";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategoryId } from "../../../redux/slices/filterSlice";
+import axios from "axios";
 
 const Home = () => {
   const [sushiItems, setSushiItems] = useState([]);
@@ -26,14 +29,14 @@ const Home = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(
-      `https://631c632a1b470e0e12009f89.mockapi.io/sushi-sets?${
-        activeIndex !== 1 ? "category=" + activeIndex : ""
-      }&sortBy=${activeSort.sortType}&order=${activeSort.sortOrder}`
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setSushiItems(json);
+    axios
+      .get(
+        `https://631c632a1b470e0e12009f89.mockapi.io/sushi-sets?${
+          activeIndex !== 1 ? "category=" + activeIndex : ""
+        }&sortBy=${activeSort.sortType}&order=${activeSort.sortOrder}`
+      )
+      .then((res) => {
+        setSushiItems(res.data);
         setIsLoading(false);
       });
   }, [activeIndex, activeSort]);
