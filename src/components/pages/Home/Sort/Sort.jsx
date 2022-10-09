@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setActiveSort } from "../../../../redux/slices/filterSlice";
 import classes from "./Sort.module.scss";
 
 const ARROW_SRC = "./assets/img/arrows/";
@@ -34,15 +36,16 @@ const sortedList = [
   },
 ];
 
-const Sort = ({ activeSort, setActiveSort }) => {
+const Sort = ({ activeSort }) => {
   const [isOpenPopUp, setIsOpenPopUp] = useState(false);
+  const dispatch = useDispatch();
 
   const dropPopUp = () => {
     setIsOpenPopUp(!isOpenPopUp);
   };
 
   const chooseActiveSort = (index) => {
-    setActiveSort(index);
+    dispatch(setActiveSort(index));
     setIsOpenPopUp(false);
   };
 
