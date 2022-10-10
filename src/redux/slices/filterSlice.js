@@ -21,10 +21,16 @@ export const filterSlice = createSlice({
     setActiveSort(state, action) {
       state.activeSort = action.payload;
     },
+    setFilters(state, action) {
+      state.activeSort = action.payload.activeSort;
+      state.activeIndex = Number(action.payload.activeIndex);
+      // console.log(state.activeSort);
+      // console.log(state.activeIndex);
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setCategoryId, setActiveSort } = filterSlice.actions;
+export const { setCategoryId, setActiveSort, setFilters } = filterSlice.actions;
 
 export default filterSlice.reducer;

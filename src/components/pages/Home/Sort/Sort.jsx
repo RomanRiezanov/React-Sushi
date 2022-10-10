@@ -5,7 +5,7 @@ import classes from "./Sort.module.scss";
 
 const ARROW_SRC = "./assets/img/arrows/";
 
-const sortedList = [
+export const sortedList = [
   {
     title: "популярністю",
     id: 0,
