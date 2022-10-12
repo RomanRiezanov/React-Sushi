@@ -1,28 +1,38 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import classes from "./Header.module.scss";
 import Search from "./Search/Search";
 
 const Header = () => {
+  const { totalPrice, products } = useSelector((state) => state.cart);
+  const amountOfProducts = products.reduce(
+    (acc, product) => acc + product.count,
+    0
+  );
+
   return (
     <div className={classes.header}>
       <div className={`${classes.container} container`}>
-        <div className={classes.header__logo}>
-          <img
-            width={50}
-            height={50}
-            src="./assets/img/logo/sushi-logo.png"
-            alt="Sushi logo"
-          />
-          <div>
-            <h1>React Sushi</h1>
-            <p>Найсмачніші суші у всесвіті</p>
+        <Link to="/">
+          <div className={classes.header__logo}>
+            <img
+              width={50}
+              height={50}
+              src="./assets/img/logo/sushi-logo.png"
+              alt="Sushi logo"
+            />
+            <div>
+              <h1>React Sushi</h1>
+              <p>Найсмачніші суші у всесвіті</p>
+            </div>
           </div>
-        </div>
+        </Link>
+
         <Search />
         <div>
           <Link to="/cart" className="button button--cart">
-            <span>₴</span>
+            <span>{totalPrice} ₴</span>
             <div className="button__delimiter"></div>
             <svg
               width="18"
@@ -53,7 +63,7 @@ const Header = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <span>3</span>
+            <span>{amountOfProducts}</span>
           </Link>
         </div>
       </div>

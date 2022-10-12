@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./PopUpProductItem.module.scss";
 
 const SUSHI_SET_SRC = "./assets/img/";
@@ -12,14 +12,10 @@ const PopUpProductItem = ({
   weight,
   amount,
   setShowPopUp,
+  addSushiSet,
   active,
+  count,
 }) => {
-  const [sushiCount, setSushiCount] = useState(0);
-
-  const addSushiSet = () => {
-    setSushiCount((prev) => prev + 1);
-  };
-
   return (
     <div
       className={
@@ -71,7 +67,7 @@ const PopUpProductItem = ({
               />
             </svg>
             <span>Добавить</span>
-            <i>{sushiCount}</i>
+            {count > 0 && <i>{count}</i>}
           </button>
         </div>
       </div>

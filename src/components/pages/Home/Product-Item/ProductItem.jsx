@@ -1,15 +1,34 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../../../../redux/slices/cartSlice";
 import PopUpProductItem from "./PopUpProductItem/PopUpProductItem";
 import classes from "./ProductItem.module.scss";
 
 const SUSHI_SET_SRC = "./assets/img/";
 
-const SushiItem = ({ title, src, price, compound, alt, weight, amount }) => {
-  const [sushiCount, setSushiCount] = useState(0);
+const SushiItem = ({
+  title,
+  src,
+  price,
+  compound,
+  alt,
+  weight,
+  amount,
+  id,
+}) => {
   const [showPopUp, setShowPopUp] = useState(false);
+  const dispatch = useDispatch();
+  const product = useSelector((state) =>
+    state.cart.products.find((product) => product.id === id)
+  );
+
+  const count = product ? product.count : 0;
 
   const addSushiSet = () => {
-    setSushiCount((prev) => prev + 1);
+    const product = { title, src, price, compound, alt, weight, amount, id };
+
+    dispatch(addProduct(product));
+    setShowPopUp(false);
   };
 
   const showModal = () => {
@@ -21,24 +40,27 @@ const SushiItem = ({ title, src, price, compound, alt, weight, amount }) => {
 
   return (
     <>
-      <div className={classes.sushiBlock} onClick={() => showModal()}>
-        <img
-          className={classes.sushiBlock__image}
-          src={`${SUSHI_SET_SRC}${src}`}
-          alt={`sushi-set-${alt}`}
-        />
-        <h4 className={classes.sushiBlock__title}>{title}</h4>
-        {compound && (
-          <div className={classes.sushiBlock__description}>
-            <p>
-              <span>Склад: </span>
-              {truncate(compound)}
-            </p>
-            <span>
-              {weight}гр.{amount}шт.
-            </span>
-          </div>
-        )}
+      <div className={classes.sushiBlock}>
+        <div onClick={() => showModal()}>
+          <img
+            className={classes.sushiBlock__image}
+            src={`${SUSHI_SET_SRC}${src}`}
+            alt={`sushi-set-${alt}`}
+          />
+          <h4 className={classes.sushiBlock__title}>{title}</h4>
+          {compound && (
+            <div className={classes.sushiBlock__description}>
+              <p>
+                <span>Склад: </span>
+                {truncate(compound)}
+              </p>
+              <span>
+                {weight}гр.{amount}шт.
+              </span>
+            </div>
+          )}
+        </div>
+
         <div className={classes.sushiBlock__bottom}>
           <div className={classes.sushiBlock__price}>{price} ₴</div>
           <button
@@ -58,7 +80,7 @@ const SushiItem = ({ title, src, price, compound, alt, weight, amount }) => {
               />
             </svg>
             <span>Добавить</span>
-            <i>{sushiCount}</i>
+            {count > 0 && <i>{count}</i>}
           </button>
         </div>
       </div>
@@ -70,7 +92,10 @@ const SushiItem = ({ title, src, price, compound, alt, weight, amount }) => {
         alt={alt}
         weight={weight}
         setShowPopUp={setShowPopUp}
+        addSushiSet={addSushiSet}
         active={showPopUp}
+        count={count}
+        id={id}
       />
     </>
   );
