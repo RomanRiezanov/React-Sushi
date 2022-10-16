@@ -8,7 +8,7 @@ import { useContext } from "react";
 import SearchContext from "../../../Context/context";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategoryId, setFilters } from "../../../redux/slices/filterSlice";
-import axios from "axios";
+import { fetchProducts } from "../../../redux/slices/productsSlice";
 import qs from "qs";
 import { useNavigate } from "react-router";
 import { useRef } from "react";
@@ -17,9 +17,8 @@ import { useCallback } from "react";
 const Home = () => {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
-  const [sushiItems, setSushiItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const { activeIndex, activeSort } = useSelector((state) => state.filter);
+  const { products, status } = useSelector((state) => state.product);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const searchQuery = useContext(SearchContext).searchQuery;
@@ -28,22 +27,12 @@ const Home = () => {
     dispatch(setCategoryId(index));
   }, []);
 
-  const filteredProducts = sushiItems.filter((product) =>
+  const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const fetchProducts = () => {
-    setIsLoading(true);
-    axios
-      .get(
-        `https://631c632a1b470e0e12009f89.mockapi.io/sushi-sets?${
-          activeIndex !== 1 ? "category=" + activeIndex : ""
-        }&sortBy=${activeSort.sortType}&order=${activeSort.sortOrder}`
-      )
-      .then((res) => {
-        setSushiItems(res.data);
-        setIsLoading(false);
-      });
+  const getProducts = async () => {
+    dispatch(fetchProducts({ activeIndex, activeSort }));
   };
 
   // if the parameters were changed and there was a first render
@@ -87,11 +76,7 @@ const Home = () => {
 
   // If there was a first render, then we request products
   useEffect(() => {
-    if (!isSearch.current) {
-      fetchProducts();
-    }
-
-    isSearch.current = false;
+    getProducts();
   }, [activeIndex, activeSort.sortType, activeSort.sortOrder]);
 
   return (
@@ -103,7 +88,19 @@ const Home = () => {
         </div>
         <h2 className={classes.content__title}>Всі сети</h2>
         <div className={classes.content__items}>
-          {isLoading
+          {status === "error" && (
+            <div className={classes.errorBlock}>
+              <h2>
+                Продукти не знайдені <icon>😕</icon>
+              </h2>
+              <p>
+                Вибачте,
+                <br />
+                Щось пішло не так, спробуйте пізніше!
+              </p>
+            </div>
+          )}
+          {status === "loading"
             ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
             : filteredProducts.map((product) => (
                 <ProductItem key={product.id} {...product} />
