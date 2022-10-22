@@ -42,6 +42,9 @@ export const productsSlice = createSlice({
   },
 });
 
+//Selectors
+export const selectProducts = (state) => state.product;
+
 // Action creators are generated for each case reducer function
 export const { setProducts } = productsSlice.actions;
 

@@ -28,7 +28,12 @@ const CartProduct = ({
   };
 
   const removeSameProduct = () => {
-    count <= 1 ? dispatch(removeProduct(id)) : dispatch(deleteSameProduct(id));
+    if (count <= 1) {
+      dispatch(removeProduct(id));
+      dispatch(deleteSameProduct(id));
+    } else {
+      dispatch(deleteSameProduct(id));
+    }
   };
 
   const deleteProduct = () => {

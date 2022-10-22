@@ -3,21 +3,18 @@ import CartSvgGenerator from "../../../../icons/CartSvgGenerator";
 import CartProduct from "./CartProduct/CartProduct";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./CartWithOrder.module.scss";
-import { clearProducts } from "../../../../redux/slices/cartSlice";
+import { clearProducts, selectCart } from "../../../../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
 
 const CartWithOrder = () => {
   const dispatch = useDispatch();
-  const cartProducts = useSelector((state) => state.cart.products);
-  const totalPrice = useSelector((state) => state.cart.totalPrice);
-
-  console.log(cartProducts);
+  const { totalPrice, products } = useSelector(selectCart);
 
   const clearCart = () => {
     dispatch(clearProducts());
   };
 
-  const amountOfProducts = cartProducts.reduce(
+  const amountOfProducts = products.reduce(
     (acc, product) => acc + product.count,
     0
   );
@@ -35,7 +32,7 @@ const CartWithOrder = () => {
         </div>
       </div>
       <div className={classes.content__item}>
-        {cartProducts.map((product) => (
+        {products.map((product) => (
           <CartProduct key={product.id} {...product} />
         ))}
       </div>

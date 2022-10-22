@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Categories from "./Categories/Categories";
 import Sort, { sortedList } from "./Sort/Sort";
 import Skeleton from "./Product-Item/Skeleton/Skeleton";
 import ProductItem from "./Product-Item/ProductItem";
 import classes from "./Home.module.scss";
-import { useContext } from "react";
-import SearchContext from "../../../Context/context";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategoryId, setFilters } from "../../../redux/slices/filterSlice";
-import { fetchProducts } from "../../../redux/slices/productsSlice";
+import {
+  selectFilter,
+  setCategoryId,
+  setFilters,
+} from "../../../redux/slices/filterSlice";
+import {
+  fetchProducts,
+  selectProducts,
+} from "../../../redux/slices/productsSlice";
 import qs from "qs";
 import { useNavigate } from "react-router";
 import { useRef } from "react";
@@ -17,18 +22,17 @@ import { useCallback } from "react";
 const Home = () => {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
-  const { activeIndex, activeSort } = useSelector((state) => state.filter);
-  const { products, status } = useSelector((state) => state.product);
+  const { activeIndex, activeSort, searchValue } = useSelector(selectFilter);
+  const { products, status } = useSelector(selectProducts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const searchQuery = useContext(SearchContext).searchQuery;
 
   const clickCategory = useCallback((index) => {
     dispatch(setCategoryId(index));
   }, []);
 
   const filteredProducts = products.filter((product) =>
-    product.title.toLowerCase().includes(searchQuery.toLowerCase())
+    product.title.toLowerCase().includes(searchValue.toLowerCase())
   );
 
   const getProducts = async () => {

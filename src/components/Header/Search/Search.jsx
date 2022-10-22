@@ -1,25 +1,28 @@
 import React from "react";
 import { useRef } from "react";
-import { useContext } from "react";
-import SearchContext from "../../../Context/context";
 import debounce from "lodash.debounce";
 import styles from "./Search.module.scss";
 import { useState, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectFilter,
+  setSearchValue,
+} from "../../../redux/slices/filterSlice";
 
 const Search = () => {
   const [value, setValue] = useState("");
-  const searchQuery = useContext(SearchContext).searchQuery;
-  const setSearchQuery = useContext(SearchContext).setSearchQuery;
+  const dispatch = useDispatch();
+  const { searchValue } = useSelector(selectFilter);
   const searchInput = useRef(null);
 
   const onClickClear = () => {
-    setSearchQuery("");
+    dispatch(setSearchValue(""));
     setValue("");
     searchInput.current.focus();
   };
 
   const updateSearchValue = useCallback(
-    debounce((value) => setSearchQuery(value), 500),
+    debounce((value) => dispatch(setSearchValue(value)), 500),
     []
   );
 
@@ -38,7 +41,7 @@ const Search = () => {
         placeholder="Search..."
         onChange={(e) => onChangeInput(e)}
       />
-      {searchQuery ? (
+      {searchValue ? (
         <svg
           className={`${styles.icon} ${styles.closeIcon}`}
           id="Layer_1"

@@ -38,17 +38,25 @@ export const cartSlice = createSlice({
       if (findProduct) {
         findProduct.count--;
       }
-      state.totalPrice = state.products.reduce(
-        (acc, val) => acc + val.price * val.count,
-        0
-      );
+
+      state.totalPrice = state.products.length
+        ? state.products.reduce((acc, val) => {
+            return acc + val.price * val.count;
+          }, 0)
+        : (state.totalPrice = 0);
     },
+
     clearProducts(state) {
       state.products = [];
       state.totalPrice = 0;
     },
   },
 });
+
+//Selectors
+export const selectCart = (state) => state.cart;
+export const selectCartProductById = (id) => (state) =>
+  state.cart.products.find((product) => product.id === id);
 
 // Action creators are generated for each case reducer function
 export const { addProduct, deleteSameProduct, removeProduct, clearProducts } =

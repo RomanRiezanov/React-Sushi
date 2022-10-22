@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../../../redux/slices/cartSlice";
+import {
+  addProduct,
+  selectCartProductById,
+} from "../../../../redux/slices/cartSlice";
 import PopUpProductItem from "./PopUpProductItem/PopUpProductItem";
 import classes from "./ProductItem.module.scss";
 
@@ -18,9 +21,7 @@ const SushiItem = ({
 }) => {
   const [showPopUp, setShowPopUp] = useState(false);
   const dispatch = useDispatch();
-  const product = useSelector((state) =>
-    state.cart.products.find((product) => product.id === id)
-  );
+  const product = useSelector(selectCartProductById);
 
   const count = product ? product.count : 0;
 
