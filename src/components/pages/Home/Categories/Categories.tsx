@@ -1,6 +1,11 @@
 import React from "react";
 import classes from "./Categories.module.scss";
 
+interface CategoriesProps {
+  activeIndex: number;
+  clickCategory: (id: number) => void;
+}
+
 const categories = [
   { title: "Всі", id: 1 },
   { title: "Сети", id: 2 },
@@ -9,7 +14,7 @@ const categories = [
   { title: "Акції", id: 5 },
 ];
 
-const Categories = ({ activeIndex, clickCategory }) => {
+const Categories = ({ activeIndex, clickCategory }: CategoriesProps) => {
   return (
     <div className={classes.categories}>
       <ul>

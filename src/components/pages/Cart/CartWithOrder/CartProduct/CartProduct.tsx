@@ -8,6 +8,18 @@ import {
   removeProduct,
 } from "../../../../../redux/slices/cartSlice";
 
+interface CartProductProps {
+  title: string;
+  compound: string;
+  count: number;
+  price: number;
+  src: string;
+  alt: string;
+  id: number;
+  weight: number;
+  amount: number;
+}
+
 const PRODUCT_SRC = "./assets/img/";
 
 const CartProduct = ({
@@ -20,7 +32,7 @@ const CartProduct = ({
   id,
   weight,
   amount,
-}) => {
+}: CartProductProps) => {
   const dispatch = useDispatch();
 
   const addSameProduct = () => {

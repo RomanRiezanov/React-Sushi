@@ -7,6 +7,17 @@ import {
 import PopUpProductItem from "./PopUpProductItem/PopUpProductItem";
 import classes from "./ProductItem.module.scss";
 
+interface SushiItemProps {
+  title: string;
+  src: string;
+  price: number;
+  compound: string;
+  alt: string;
+  weight: number;
+  amount: number;
+  id: number;
+}
+
 const SUSHI_SET_SRC = "./assets/img/";
 
 const SushiItem = ({
@@ -18,10 +29,10 @@ const SushiItem = ({
   weight,
   amount,
   id,
-}) => {
-  const [showPopUp, setShowPopUp] = useState(false);
+}: SushiItemProps) => {
+  const [showPopUp, setShowPopUp] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const product = useSelector(selectCartProductById);
+  const product: any = useSelector(selectCartProductById);
 
   const count = product ? product.count : 0;
 
@@ -36,7 +47,7 @@ const SushiItem = ({
     setShowPopUp(true);
   };
 
-  const truncate = (text) =>
+  const truncate = (text: string) =>
     text.length > 100 ? `${text.substring(0, 100)}...` : text;
 
   return (
@@ -96,7 +107,7 @@ const SushiItem = ({
         addSushiSet={addSushiSet}
         active={showPopUp}
         count={count}
-        id={id}
+        amount={amount}
       />
     </>
   );

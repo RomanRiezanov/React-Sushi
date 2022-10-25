@@ -1,6 +1,10 @@
 import React from "react";
 
-const CartSvgGenerator = ({ id }) => {
+interface CartSvgGeneratorProps {
+  id: string;
+}
+
+const CartSvgGenerator = ({ id }: CartSvgGeneratorProps) => {
   switch (id) {
     case "trash":
       return (
@@ -145,7 +149,7 @@ const CartSvgGenerator = ({ id }) => {
         </svg>
       );
     default:
-      break;
+      return null;
   }
 };
 

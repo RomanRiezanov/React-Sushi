@@ -5,6 +5,18 @@ import { useDispatch } from "react-redux";
 import { setActiveSort } from "../../../../redux/slices/filterSlice";
 import classes from "./Sort.module.scss";
 
+interface SortProps {
+  activeSort: ActiveSort;
+}
+
+interface ActiveSort {
+  arrow: string;
+  id: number;
+  sortOrder: string;
+  sortType: string;
+  title: string;
+}
+
 const ARROW_SRC = "./assets/img/arrows/";
 
 export const sortedList = [
@@ -38,7 +50,7 @@ export const sortedList = [
   },
 ];
 
-const Sort = ({ activeSort }) => {
+const Sort = ({ activeSort }: SortProps) => {
   const [isOpenPopUp, setIsOpenPopUp] = useState(false);
   const sortRef = useRef(null);
   const dispatch = useDispatch();
@@ -47,13 +59,13 @@ const Sort = ({ activeSort }) => {
     setIsOpenPopUp(!isOpenPopUp);
   };
 
-  const chooseActiveSort = (index) => {
-    dispatch(setActiveSort(index));
+  const chooseActiveSort = (sort: ActiveSort) => {
+    dispatch(setActiveSort(sort));
     setIsOpenPopUp(false);
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: any) => {
       if (!event.path.includes(sortRef.current)) {
         setIsOpenPopUp(false);
       }

@@ -19,24 +19,44 @@ import { useNavigate } from "react-router";
 import { useRef } from "react";
 import { useCallback } from "react";
 
+interface ActiveSort {
+  title: string;
+  id: number;
+  sortType: string;
+  sortOrder: string;
+  arrow: string;
+}
+
 const Home = () => {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
-  const { activeIndex, activeSort, searchValue } = useSelector(selectFilter);
+  const {
+    activeIndex,
+    activeSort,
+    searchValue,
+  }: { activeIndex: number; activeSort: ActiveSort; searchValue: string } =
+    useSelector(selectFilter);
+
   const { products, status } = useSelector(selectProducts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const clickCategory = useCallback((index) => {
+  const clickCategory = useCallback((index: number) => {
     dispatch(setCategoryId(index));
   }, []);
 
-  const filteredProducts = products.filter((product) =>
+  const filteredProducts = products.filter((product: any) =>
     product.title.toLowerCase().includes(searchValue.toLowerCase())
   );
 
   const getProducts = async () => {
-    dispatch(fetchProducts({ activeIndex, activeSort }));
+    dispatch(
+      //@ts-ignore
+      fetchProducts({
+        activeIndex,
+        activeSort,
+      })
+    );
   };
 
   // if the parameters were changed and there was a first render
@@ -95,7 +115,7 @@ const Home = () => {
           {status === "error" && (
             <div className={classes.errorBlock}>
               <h2>
-                Продукти не знайдені <icon>😕</icon>
+                Продукти не знайдені <span>😕</span>
               </h2>
               <p>
                 Вибачте,
@@ -106,7 +126,7 @@ const Home = () => {
           )}
           {status === "loading"
             ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-            : filteredProducts.map((product) => (
+            : filteredProducts.map((product: any) => (
                 <ProductItem key={product.id} {...product} />
               ))}
         </div>
