@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { setActiveSort } from "../../../../redux/slices/filterSlice";
 import classes from "./Sort.module.scss";
 
 const ARROW_SRC = "./assets/img/arrows/";
 
-const sortedList = [
+export const sortedList = [
   {
     title: "популярністю",
     id: 0,
@@ -38,6 +40,7 @@ const sortedList = [
 
 const Sort = ({ activeSort }) => {
   const [isOpenPopUp, setIsOpenPopUp] = useState(false);
+  const sortRef = useRef(null);
   const dispatch = useDispatch();
 
   const dropPopUp = () => {
@@ -49,8 +52,19 @@ const Sort = ({ activeSort }) => {
     setIsOpenPopUp(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.path.includes(sortRef.current)) {
+        setIsOpenPopUp(false);
+      }
+    };
+    document.body.addEventListener("click", handleClickOutside);
+
+    return () => document.body.removeEventListener("click", handleClickOutside);
+  }, []);
+
   return (
-    <div className={classes.sort}>
+    <div className={classes.sort} ref={sortRef}>
       <div className={classes.sort__label} onClick={dropPopUp}>
         <svg
           width="10"

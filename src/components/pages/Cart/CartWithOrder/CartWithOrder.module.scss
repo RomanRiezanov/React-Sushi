@@ -168,7 +168,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 210px;
         border-color: darken($color: $gray-line, $amount: 10);
         @media (max-width: $small-mobile) {
           margin-top: 15px;
@@ -196,7 +195,6 @@
       .pay_btn {
         font-size: 16px;
         font-weight: 600;
-        width: 210px;
         padding: 10px;
       }
     }
