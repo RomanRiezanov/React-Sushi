@@ -1,20 +1,42 @@
 import React from "react";
+import { useRef } from "react";
 import { useContext } from "react";
 import SearchContext from "../../../Context/context";
+import debounce from "lodash.debounce";
 import styles from "./Search.module.scss";
+import { useState, useCallback } from "react";
 
 const Search = () => {
+  const [value, setValue] = useState("");
   const searchQuery = useContext(SearchContext).searchQuery;
   const setSearchQuery = useContext(SearchContext).setSearchQuery;
+  const searchInput = useRef(null);
+
+  const onClickClear = () => {
+    setSearchQuery("");
+    setValue("");
+    searchInput.current.focus();
+  };
+
+  const updateSearchValue = useCallback(
+    debounce((value) => setSearchQuery(value), 500),
+    []
+  );
+
+  const onChangeInput = (e) => {
+    setValue(e.target.value);
+    updateSearchValue(e.target.value);
+  };
 
   return (
     <div className={styles.container}>
       <input
         type="text"
-        value={searchQuery}
+        value={value}
+        ref={searchInput}
         className={styles.input}
         placeholder="Search..."
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={(e) => onChangeInput(e)}
       />
       {searchQuery ? (
         <svg
@@ -23,7 +45,7 @@ const Search = () => {
           version="1.1"
           viewBox="0 0 128 128"
           xmlns="http://www.w3.org/2000/svg"
-          onClick={() => setSearchQuery("")}
+          onClick={() => onClickClear()}
         >
           <g>
             <g>
