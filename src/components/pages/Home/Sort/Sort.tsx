@@ -17,6 +17,10 @@ interface ActiveSort {
   title: string;
 }
 
+type ClickOutside = MouseEvent & {
+  path: Node[];
+};
+
 const ARROW_SRC = "./assets/img/arrows/";
 
 export const sortedList = [
@@ -65,8 +69,10 @@ const Sort = ({ activeSort }: SortProps) => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (!event.path.includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const _event = event as ClickOutside;
+
+      if (sortRef.current && !_event.path.includes(sortRef.current)) {
         setIsOpenPopUp(false);
       }
     };
