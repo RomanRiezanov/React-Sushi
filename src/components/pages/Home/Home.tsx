@@ -6,26 +6,20 @@ import ProductItem from "./Product-Item/ProductItem";
 import classes from "./Home.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  ActiveSort,
   selectFilter,
   setCategoryId,
   setFilters,
 } from "../../../redux/slices/filterSlice";
 import {
   fetchProducts,
+  Product,
   selectProducts,
 } from "../../../redux/slices/productsSlice";
 import qs from "qs";
 import { useNavigate } from "react-router";
 import { useRef } from "react";
 import { useCallback } from "react";
-
-interface ActiveSort {
-  title: string;
-  id: number;
-  sortType: string;
-  sortOrder: string;
-  arrow: string;
-}
 
 const Home = () => {
   const isSearch = useRef(false);
@@ -45,7 +39,7 @@ const Home = () => {
     dispatch(setCategoryId(index));
   }, []);
 
-  const filteredProducts = products.filter((product: any) =>
+  const filteredProducts = products.filter((product: Product) =>
     product.title.toLowerCase().includes(searchValue.toLowerCase())
   );
 
@@ -93,7 +87,14 @@ const Home = () => {
         );
       });
 
-      dispatch(setFilters({ ...newParams, activeSort: sort }));
+      dispatch(
+        setFilters({
+          ...newParams,
+          activeIndex: Number(activeIndex),
+          activeSort: sort ? sort : sortedList[0],
+          searchValue: "",
+        })
+      );
       isSearch.current = true;
     }
   }, []);
@@ -126,7 +127,7 @@ const Home = () => {
           )}
           {status === "loading"
             ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-            : filteredProducts.map((product: any) => (
+            : filteredProducts.map((product: Product) => (
                 <ProductItem key={product.id} {...product} />
               ))}
         </div>

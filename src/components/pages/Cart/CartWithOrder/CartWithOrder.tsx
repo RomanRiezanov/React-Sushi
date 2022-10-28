@@ -3,7 +3,11 @@ import CartSvgGenerator from "../../../../icons/CartSvgGenerator";
 import CartProduct from "./CartProduct/CartProduct";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./CartWithOrder.module.scss";
-import { clearProducts, selectCart } from "../../../../redux/slices/cartSlice";
+import {
+  CartProductState,
+  clearProducts,
+  selectCart,
+} from "../../../../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
 
 interface Product {
@@ -20,7 +24,10 @@ interface Product {
 
 const CartWithOrder = () => {
   const dispatch = useDispatch();
-  const { totalPrice, products }: { totalPrice: string; products: Product[] } =
+  const {
+    totalPrice,
+    products,
+  }: { totalPrice: number; products: CartProductState[] } =
     useSelector(selectCart);
 
   const clearCart = () => {

@@ -2,19 +2,16 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { setActiveSort } from "../../../../redux/slices/filterSlice";
+import {
+  ActiveSort,
+  setActiveSort,
+  sortOrderEnum,
+  sortTypeEnum,
+} from "../../../../redux/slices/filterSlice";
 import classes from "./Sort.module.scss";
 
 interface SortProps {
   activeSort: ActiveSort;
-}
-
-interface ActiveSort {
-  arrow: string;
-  id: number;
-  sortOrder: string;
-  sortType: string;
-  title: string;
 }
 
 type ClickOutside = MouseEvent & {
@@ -23,33 +20,33 @@ type ClickOutside = MouseEvent & {
 
 const ARROW_SRC = "./assets/img/arrows/";
 
-export const sortedList = [
+export const sortedList: ActiveSort[] = [
   {
     title: "популярністю",
     id: 0,
-    sortType: "rating",
-    sortOrder: "desc",
+    sortType: sortTypeEnum.RATING,
+    sortOrder: sortOrderEnum.DESC,
     arrow: "arrow-bottom.png",
   },
   {
     title: "популярністю",
     id: 1,
-    sortType: "rating",
-    sortOrder: "asc",
+    sortType: sortTypeEnum.RATING,
+    sortOrder: sortOrderEnum.ASC,
     arrow: "arrow-top.png",
   },
   {
     title: "ціною",
     id: 2,
-    sortType: "price",
-    sortOrder: "desc",
+    sortType: sortTypeEnum.PRICE,
+    sortOrder: sortOrderEnum.DESC,
     arrow: "arrow-bottom.png",
   },
   {
     title: "ціною",
     id: 3,
-    sortType: "price",
-    sortOrder: "asc",
+    sortType: sortTypeEnum.PRICE,
+    sortOrder: sortOrderEnum.ASC,
     arrow: "arrow-top.png",
   },
 ];

@@ -1,21 +1,52 @@
+import { ActiveSort } from "./filterSlice";
+import { RootState } from "./../store";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProductsStatus",
-  async ({ activeIndex, activeSort }) => {
-    const { data } = await axios.get(
+  async ({
+    activeIndex,
+    activeSort,
+  }: {
+    activeIndex: number;
+    activeSort: ActiveSort;
+  }) => {
+    const { data } = await axios.get<Product[]>(
       `https://631c632a1b470e0e12009f89.mockapi.io/sushi-sets?${
         activeIndex !== 1 ? "category=" + activeIndex : ""
       }&sortBy=${activeSort.sortType}&order=${activeSort.sortOrder}`
     );
-    return data;
+    return data as Product[];
   }
 );
 
-const initialState = {
+export interface Product {
+  title: string;
+  src: string;
+  price: number;
+  compound: string;
+  alt: string;
+  weight: number;
+  amount: number;
+  id: number;
+  count: number;
+}
+
+enum Status {
+  LOADING = "loading",
+  SUCCESS = "success",
+  ERROR = "error",
+}
+
+interface ProductSliceState {
+  products: Product[];
+  status: Status;
+}
+
+const initialState: ProductSliceState = {
   products: [],
-  status: "loading",
+  status: Status.LOADING,
 };
 
 export const productsSlice = createSlice({
@@ -29,21 +60,21 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state, action) => {
       state.products = [];
-      state.status = "loading";
+      state.status = Status.LOADING;
     });
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.products = action.payload;
-      state.status = "success";
+      state.status = Status.SUCCESS;
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
       state.products = [];
-      state.status = "error";
+      state.status = Status.ERROR;
     });
   },
 });
 
 //Selectors
-export const selectProducts = (state) => state.product;
+export const selectProducts = (state: RootState) => state.product;
 
 // Action creators are generated for each case reducer function
 export const { setProducts } = productsSlice.actions;

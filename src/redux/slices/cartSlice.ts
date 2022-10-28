@@ -1,6 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "./../store";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+export interface CartProductState {
+  alt: string;
+  amount: number;
+  compound: string;
+  count: number;
+  id: number;
+  price: number;
+  src: string;
+  title: string;
+  weight: number;
+}
+
+interface CartSliceState {
+  totalPrice: number;
+  products: CartProductState[];
+}
+
+const initialState: CartSliceState = {
   totalPrice: 0,
   products: [],
 };
@@ -9,7 +27,7 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addProduct(state, action) {
+    addProduct(state, action: PayloadAction<CartProductState>) {
       const findProduct = state.products.find(
         (product) => product.id === action.payload.id
       );
@@ -25,12 +43,12 @@ export const cartSlice = createSlice({
         0
       );
     },
-    removeProduct(state, action) {
+    removeProduct(state, action: PayloadAction<number>) {
       state.products = state.products.filter(
         (product) => product.id !== action.payload
       );
     },
-    deleteSameProduct(state, action) {
+    deleteSameProduct(state, action: PayloadAction<number>) {
       const findProduct = state.products.find(
         (product) => product.id === action.payload
       );
@@ -54,8 +72,8 @@ export const cartSlice = createSlice({
 });
 
 //Selectors
-export const selectCart = (state) => state.cart;
-export const selectCartProductById = (id) => (state) =>
+export const selectCart = (state: RootState) => state.cart;
+export const selectCartProductById = (id: number) => (state: RootState) =>
   state.cart.products.find((product) => product.id === id);
 
 // Action creators are generated for each case reducer function
@@ -63,3 +81,5 @@ export const { addProduct, deleteSameProduct, removeProduct, clearProducts } =
   cartSlice.actions;
 
 export default cartSlice.reducer;
+
+console.log(null || (2 && 3) || 4);

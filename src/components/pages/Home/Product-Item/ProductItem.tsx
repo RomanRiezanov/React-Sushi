@@ -4,6 +4,7 @@ import {
   addProduct,
   selectCartProductById,
 } from "../../../../redux/slices/cartSlice";
+import { Product } from "../../../../redux/slices/productsSlice";
 import PopUpProductItem from "./PopUpProductItem/PopUpProductItem";
 import classes from "./ProductItem.module.scss";
 
@@ -32,12 +33,22 @@ const SushiItem = ({
 }: SushiItemProps) => {
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const product: any = useSelector(selectCartProductById);
+  const product = useSelector(selectCartProductById(id));
 
   const count = product ? product.count : 0;
 
   const addSushiSet = () => {
-    const product = { title, src, price, compound, alt, weight, amount, id };
+    const product: Product = {
+      title,
+      src,
+      price,
+      compound,
+      alt,
+      weight,
+      amount,
+      id,
+      count,
+    };
 
     dispatch(addProduct(product));
     setShowPopUp(false);
