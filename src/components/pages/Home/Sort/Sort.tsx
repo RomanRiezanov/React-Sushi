@@ -51,7 +51,7 @@ export const sortedList: ActiveSort[] = [
   },
 ];
 
-const Sort = ({ activeSort }: SortProps) => {
+const Sort = React.memo(({ activeSort }: SortProps) => {
   const [isOpenPopUp, setIsOpenPopUp] = useState(false);
   const sortRef = useRef(null);
   const dispatch = useDispatch();
@@ -123,6 +123,6 @@ const Sort = ({ activeSort }: SortProps) => {
       )}
     </div>
   );
-};
+});
 
 export default Sort;
