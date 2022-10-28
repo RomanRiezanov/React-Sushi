@@ -14,22 +14,24 @@ const categories = [
   { title: "Акції", id: 5 },
 ];
 
-const Categories = ({ activeIndex, clickCategory }: CategoriesProps) => {
-  return (
-    <div className={classes.categories}>
-      <ul>
-        {categories.map((category) => (
-          <li
-            key={category.id}
-            className={activeIndex === category.id ? classes.active : ""}
-            onClick={() => clickCategory(category.id)}
-          >
-            {category.title}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+const Categories = React.memo(
+  ({ activeIndex, clickCategory }: CategoriesProps) => {
+    return (
+      <div className={classes.categories}>
+        <ul>
+          {categories.map((category) => (
+            <li
+              key={category.id}
+              className={activeIndex === category.id ? classes.active : ""}
+              onClick={() => clickCategory(category.id)}
+            >
+              {category.title}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+);
 
 export default Categories;

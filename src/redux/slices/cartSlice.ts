@@ -81,5 +81,3 @@ export const { addProduct, deleteSameProduct, removeProduct, clearProducts } =
   cartSlice.actions;
 
 export default cartSlice.reducer;
-
-console.log(null || (2 && 3) || 4);
