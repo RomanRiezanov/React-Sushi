@@ -1,26 +1,13 @@
-import { RootState } from "./../store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { getCartFromLS } from "../../../utils/getProductsFromLS";
+import { calcTotalPrice } from "../../../utils/calcTotalPrice";
+import { CartProductState, CartSliceState } from "./types";
 
-export interface CartProductState {
-  alt: string;
-  amount: number;
-  compound: string;
-  count: number;
-  id: number;
-  price: number;
-  src: string;
-  title: string;
-  weight: number;
-}
-
-interface CartSliceState {
-  totalPrice: number;
-  products: CartProductState[];
-}
+const { totalPrice, products } = getCartFromLS();
 
 const initialState: CartSliceState = {
-  totalPrice: 0,
-  products: [],
+  totalPrice: totalPrice,
+  products: products,
 };
 
 export const cartSlice = createSlice({
@@ -38,10 +25,7 @@ export const cartSlice = createSlice({
         state.products.push({ ...action.payload, count: 1 });
       }
 
-      state.totalPrice = state.products.reduce(
-        (acc, val) => acc + val.price * val.count,
-        0
-      );
+      state.totalPrice = calcTotalPrice(state.products);
     },
     removeProduct(state, action: PayloadAction<number>) {
       state.products = state.products.filter(
@@ -70,11 +54,6 @@ export const cartSlice = createSlice({
     },
   },
 });
-
-//Selectors
-export const selectCart = (state: RootState) => state.cart;
-export const selectCartProductById = (id: number) => (state: RootState) =>
-  state.cart.products.find((product) => product.id === id);
 
 // Action creators are generated for each case reducer function
 export const { addProduct, deleteSameProduct, removeProduct, clearProducts } =

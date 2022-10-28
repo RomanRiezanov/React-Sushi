@@ -5,21 +5,16 @@ import Skeleton from "./Product-Item/Skeleton/Skeleton";
 import ProductItem from "./Product-Item/ProductItem";
 import classes from "./Home.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  ActiveSort,
-  selectFilter,
-  setCategoryId,
-  setFilters,
-} from "../../../redux/slices/filterSlice";
-import {
-  fetchProducts,
-  Product,
-  selectProducts,
-} from "../../../redux/slices/productsSlice";
 import qs from "qs";
 import { useNavigate } from "react-router";
 import { useRef } from "react";
 import { useCallback } from "react";
+import { selectFilter } from "../../../redux/slices/filter/selectors";
+import { ActiveSort } from "../../../redux/slices/filter/types";
+import { setCategoryId, setFilters } from "../../../redux/slices/filter/slice";
+import { selectProducts } from "../../../redux/slices/products/selectors";
+import { Product } from "../../../redux/slices/products/types";
+import { fetchProducts } from "../../../redux/slices/products/slice";
 
 const Home = () => {
   const isSearch = useRef(false);

@@ -4,10 +4,9 @@ import CartSvgGenerator from "../../../../../icons/CartSvgGenerator";
 import { useDispatch } from "react-redux";
 import {
   addProduct,
-  CartProductState,
   deleteSameProduct,
   removeProduct,
-} from "../../../../../redux/slices/cartSlice";
+} from "../../../../../redux/slices/cart/slice";
 
 interface CartProductProps {
   title: string;
@@ -37,7 +36,7 @@ const CartProduct = ({
   const dispatch = useDispatch();
 
   const addSameProduct = () => {
-    dispatch(addProduct({ id } as CartProductState));
+    dispatch(addProduct({ id } as CartProductProps));
   };
 
   const removeSameProduct = () => {

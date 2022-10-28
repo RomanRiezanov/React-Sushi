@@ -3,12 +3,10 @@ import CartSvgGenerator from "../../../../icons/CartSvgGenerator";
 import CartProduct from "./CartProduct/CartProduct";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./CartWithOrder.module.scss";
-import {
-  CartProductState,
-  clearProducts,
-  selectCart,
-} from "../../../../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
+import { selectCart } from "../../../../redux/slices/cart/selectors";
+import { clearProducts } from "../../../../redux/slices/cart/slice";
+import { CartProductState } from "../../../../redux/slices/cart/types";
 
 interface Product {
   alt: string;
