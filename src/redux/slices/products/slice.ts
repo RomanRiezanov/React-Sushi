@@ -1,7 +1,7 @@
-import { ActiveSort } from "./filterSlice";
-import { RootState } from "./../store";
+import { ActiveSort } from "../filter/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Product, ProductSliceState, Status } from "./types";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProductsStatus",
@@ -20,29 +20,6 @@ export const fetchProducts = createAsyncThunk(
     return data as Product[];
   }
 );
-
-export interface Product {
-  title: string;
-  src: string;
-  price: number;
-  compound: string;
-  alt: string;
-  weight: number;
-  amount: number;
-  id: number;
-  count: number;
-}
-
-enum Status {
-  LOADING = "loading",
-  SUCCESS = "success",
-  ERROR = "error",
-}
-
-interface ProductSliceState {
-  products: Product[];
-  status: Status;
-}
 
 const initialState: ProductSliceState = {
   products: [],
@@ -72,9 +49,6 @@ export const productsSlice = createSlice({
     });
   },
 });
-
-//Selectors
-export const selectProducts = (state: RootState) => state.product;
 
 // Action creators are generated for each case reducer function
 export const { setProducts } = productsSlice.actions;

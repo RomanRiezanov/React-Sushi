@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addProduct,
-  selectCartProductById,
-} from "../../../../redux/slices/cartSlice";
-import { Product } from "../../../../redux/slices/productsSlice";
+import { selectCartProductById } from "../../../../redux/slices/cart/selectors";
+import { addProduct } from "../../../../redux/slices/cart/slice";
+import { Product } from "../../../../redux/slices/products/types";
 import PopUpProductItem from "./PopUpProductItem/PopUpProductItem";
 import classes from "./ProductItem.module.scss";
 

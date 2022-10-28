@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { selectCart } from "../../redux/slices/cartSlice";
+import { selectCart } from "../../redux/slices/cart/selectors";
 import classes from "./Header.module.scss";
 import Search from "./Search/Search";
 
@@ -19,10 +19,19 @@ interface Product {
 
 const Header = () => {
   const { totalPrice, products } = useSelector(selectCart);
+  const isMounted = useRef(false);
   const amountOfProducts = products.reduce(
     (acc: number, product: Product) => acc + product.count,
     0
   );
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(products);
+      localStorage.setItem("cart", json);
+    }
+    isMounted.current = true;
+  }, [products]);
 
   return (
     <div className={classes.header}>

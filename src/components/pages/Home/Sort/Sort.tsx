@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
+import { setActiveSort } from "../../../../redux/slices/filter/slice";
 import {
   ActiveSort,
-  setActiveSort,
   sortOrderEnum,
   sortTypeEnum,
-} from "../../../../redux/slices/filterSlice";
+} from "../../../../redux/slices/filter/types";
 import classes from "./Sort.module.scss";
 
 interface SortProps {
