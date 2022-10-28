@@ -4,8 +4,20 @@ import {
   addProduct,
   selectCartProductById,
 } from "../../../../redux/slices/cartSlice";
+import { Product } from "../../../../redux/slices/productsSlice";
 import PopUpProductItem from "./PopUpProductItem/PopUpProductItem";
 import classes from "./ProductItem.module.scss";
+
+interface SushiItemProps {
+  title: string;
+  src: string;
+  price: number;
+  compound: string;
+  alt: string;
+  weight: number;
+  amount: number;
+  id: number;
+}
 
 const SUSHI_SET_SRC = "./assets/img/";
 
@@ -18,15 +30,25 @@ const SushiItem = ({
   weight,
   amount,
   id,
-}) => {
-  const [showPopUp, setShowPopUp] = useState(false);
+}: SushiItemProps) => {
+  const [showPopUp, setShowPopUp] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const product = useSelector(selectCartProductById);
+  const product = useSelector(selectCartProductById(id));
 
   const count = product ? product.count : 0;
 
   const addSushiSet = () => {
-    const product = { title, src, price, compound, alt, weight, amount, id };
+    const product: Product = {
+      title,
+      src,
+      price,
+      compound,
+      alt,
+      weight,
+      amount,
+      id,
+      count,
+    };
 
     dispatch(addProduct(product));
     setShowPopUp(false);
@@ -36,7 +58,7 @@ const SushiItem = ({
     setShowPopUp(true);
   };
 
-  const truncate = (text) =>
+  const truncate = (text: string) =>
     text.length > 100 ? `${text.substring(0, 100)}...` : text;
 
   return (
@@ -96,7 +118,7 @@ const SushiItem = ({
         addSushiSet={addSushiSet}
         active={showPopUp}
         count={count}
-        id={id}
+        amount={amount}
       />
     </>
   );

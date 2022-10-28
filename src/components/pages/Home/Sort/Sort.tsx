@@ -2,43 +2,56 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { setActiveSort } from "../../../../redux/slices/filterSlice";
+import {
+  ActiveSort,
+  setActiveSort,
+  sortOrderEnum,
+  sortTypeEnum,
+} from "../../../../redux/slices/filterSlice";
 import classes from "./Sort.module.scss";
+
+interface SortProps {
+  activeSort: ActiveSort;
+}
+
+type ClickOutside = MouseEvent & {
+  path: Node[];
+};
 
 const ARROW_SRC = "./assets/img/arrows/";
 
-export const sortedList = [
+export const sortedList: ActiveSort[] = [
   {
     title: "популярністю",
     id: 0,
-    sortType: "rating",
-    sortOrder: "desc",
+    sortType: sortTypeEnum.RATING,
+    sortOrder: sortOrderEnum.DESC,
     arrow: "arrow-bottom.png",
   },
   {
     title: "популярністю",
     id: 1,
-    sortType: "rating",
-    sortOrder: "asc",
+    sortType: sortTypeEnum.RATING,
+    sortOrder: sortOrderEnum.ASC,
     arrow: "arrow-top.png",
   },
   {
     title: "ціною",
     id: 2,
-    sortType: "price",
-    sortOrder: "desc",
+    sortType: sortTypeEnum.PRICE,
+    sortOrder: sortOrderEnum.DESC,
     arrow: "arrow-bottom.png",
   },
   {
     title: "ціною",
     id: 3,
-    sortType: "price",
-    sortOrder: "asc",
+    sortType: sortTypeEnum.PRICE,
+    sortOrder: sortOrderEnum.ASC,
     arrow: "arrow-top.png",
   },
 ];
 
-const Sort = ({ activeSort }) => {
+const Sort = ({ activeSort }: SortProps) => {
   const [isOpenPopUp, setIsOpenPopUp] = useState(false);
   const sortRef = useRef(null);
   const dispatch = useDispatch();
@@ -47,14 +60,16 @@ const Sort = ({ activeSort }) => {
     setIsOpenPopUp(!isOpenPopUp);
   };
 
-  const chooseActiveSort = (index) => {
-    dispatch(setActiveSort(index));
+  const chooseActiveSort = (sort: ActiveSort) => {
+    dispatch(setActiveSort(sort));
     setIsOpenPopUp(false);
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.path.includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const _event = event as ClickOutside;
+
+      if (sortRef.current && !_event.path.includes(sortRef.current)) {
         setIsOpenPopUp(false);
       }
     };

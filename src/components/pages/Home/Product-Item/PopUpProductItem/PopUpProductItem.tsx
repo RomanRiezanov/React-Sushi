@@ -1,6 +1,20 @@
 import React from "react";
 import classes from "./PopUpProductItem.module.scss";
 
+interface PopUpProductItemProps {
+  title: string;
+  src: string;
+  price: number;
+  compound: string;
+  alt: string;
+  weight: number;
+  amount: number;
+  setShowPopUp: (state: boolean) => void;
+  addSushiSet: () => void;
+  active: boolean;
+  count: number;
+}
+
 const SUSHI_SET_SRC = "./assets/img/";
 
 const PopUpProductItem = ({
@@ -15,7 +29,7 @@ const PopUpProductItem = ({
   addSushiSet,
   active,
   count,
-}) => {
+}: PopUpProductItemProps) => {
   return (
     <div
       className={

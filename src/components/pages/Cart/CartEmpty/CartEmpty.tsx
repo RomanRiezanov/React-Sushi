@@ -6,7 +6,7 @@ const CartEmpty = () => {
   return (
     <div className={`${classes.cart} ${classes.cart__empty}`}>
       <h2>
-        Кошик порожній <icon>😕</icon>
+        Кошик порожній <span>😕</span>
       </h2>
       <p>
         Найімовірніше, ви нічого не замовляли

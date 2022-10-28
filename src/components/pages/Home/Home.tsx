@@ -6,12 +6,14 @@ import ProductItem from "./Product-Item/ProductItem";
 import classes from "./Home.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  ActiveSort,
   selectFilter,
   setCategoryId,
   setFilters,
 } from "../../../redux/slices/filterSlice";
 import {
   fetchProducts,
+  Product,
   selectProducts,
 } from "../../../redux/slices/productsSlice";
 import qs from "qs";
@@ -22,21 +24,33 @@ import { useCallback } from "react";
 const Home = () => {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
-  const { activeIndex, activeSort, searchValue } = useSelector(selectFilter);
+  const {
+    activeIndex,
+    activeSort,
+    searchValue,
+  }: { activeIndex: number; activeSort: ActiveSort; searchValue: string } =
+    useSelector(selectFilter);
+
   const { products, status } = useSelector(selectProducts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const clickCategory = useCallback((index) => {
+  const clickCategory = useCallback((index: number) => {
     dispatch(setCategoryId(index));
   }, []);
 
-  const filteredProducts = products.filter((product) =>
+  const filteredProducts = products.filter((product: Product) =>
     product.title.toLowerCase().includes(searchValue.toLowerCase())
   );
 
   const getProducts = async () => {
-    dispatch(fetchProducts({ activeIndex, activeSort }));
+    dispatch(
+      //@ts-ignore
+      fetchProducts({
+        activeIndex,
+        activeSort,
+      })
+    );
   };
 
   // if the parameters were changed and there was a first render
@@ -73,7 +87,14 @@ const Home = () => {
         );
       });
 
-      dispatch(setFilters({ ...newParams, activeSort: sort }));
+      dispatch(
+        setFilters({
+          ...newParams,
+          activeIndex: Number(activeIndex),
+          activeSort: sort ? sort : sortedList[0],
+          searchValue: "",
+        })
+      );
       isSearch.current = true;
     }
   }, []);
@@ -95,7 +116,7 @@ const Home = () => {
           {status === "error" && (
             <div className={classes.errorBlock}>
               <h2>
-                Продукти не знайдені <icon>😕</icon>
+                Продукти не знайдені <span>😕</span>
               </h2>
               <p>
                 Вибачте,
@@ -106,7 +127,7 @@ const Home = () => {
           )}
           {status === "loading"
             ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-            : filteredProducts.map((product) => (
+            : filteredProducts.map((product: Product) => (
                 <ProductItem key={product.id} {...product} />
               ))}
         </div>

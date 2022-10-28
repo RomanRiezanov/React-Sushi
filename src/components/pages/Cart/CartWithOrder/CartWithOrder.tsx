@@ -3,19 +3,39 @@ import CartSvgGenerator from "../../../../icons/CartSvgGenerator";
 import CartProduct from "./CartProduct/CartProduct";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./CartWithOrder.module.scss";
-import { clearProducts, selectCart } from "../../../../redux/slices/cartSlice";
+import {
+  CartProductState,
+  clearProducts,
+  selectCart,
+} from "../../../../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
+
+interface Product {
+  alt: string;
+  amount: number;
+  compound: string;
+  count: number;
+  id: number;
+  price: number;
+  src: string;
+  title: string;
+  weight: number;
+}
 
 const CartWithOrder = () => {
   const dispatch = useDispatch();
-  const { totalPrice, products } = useSelector(selectCart);
+  const {
+    totalPrice,
+    products,
+  }: { totalPrice: number; products: CartProductState[] } =
+    useSelector(selectCart);
 
   const clearCart = () => {
     dispatch(clearProducts());
   };
 
   const amountOfProducts = products.reduce(
-    (acc, product) => acc + product.count,
+    (acc: number, product: Product) => acc + product.count,
     0
   );
 

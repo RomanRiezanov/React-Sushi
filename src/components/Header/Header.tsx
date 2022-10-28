@@ -5,10 +5,22 @@ import { selectCart } from "../../redux/slices/cartSlice";
 import classes from "./Header.module.scss";
 import Search from "./Search/Search";
 
+interface Product {
+  alt: string;
+  amount: number;
+  compound: string;
+  count: number;
+  id: number;
+  price: number;
+  src: string;
+  title: string;
+  weight: number;
+}
+
 const Header = () => {
   const { totalPrice, products } = useSelector(selectCart);
   const amountOfProducts = products.reduce(
-    (acc, product) => acc + product.count,
+    (acc: number, product: Product) => acc + product.count,
     0
   );
 
