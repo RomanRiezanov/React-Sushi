@@ -1,25 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { selectCart } from "../../redux/slices/cart/selectors";
+import { Product } from "../../redux/slices/products/types";
 import classes from "./Header.module.scss";
 import Search from "./Search/Search";
-
-interface Product {
-  alt: string;
-  amount: number;
-  compound: string;
-  count: number;
-  id: number;
-  price: number;
-  src: string;
-  title: string;
-  weight: number;
-}
 
 const Header = () => {
   const { totalPrice, products } = useSelector(selectCart);
   const isMounted = useRef(false);
+  const location = useLocation();
   const amountOfProducts = products.reduce(
     (acc: number, product: Product) => acc + product.count,
     0
@@ -50,8 +40,7 @@ const Header = () => {
             </div>
           </div>
         </Link>
-
-        <Search />
+        {location.pathname === "/" && <Search />}
         <div>
           <Link to="/cart" className="button button--cart">
             <span>{totalPrice} ₴</span>

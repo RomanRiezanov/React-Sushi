@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getCartFromLS } from "../../../utils/getProductsFromLS";
 import { calcTotalPrice } from "../../../utils/calcTotalPrice";
-import { CartProductState, CartSliceState } from "./types";
+import { CartSliceState } from "./types";
+import { Product } from "../products/types";
 
 const { totalPrice, products } = getCartFromLS();
 
@@ -14,7 +15,7 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addProduct(state, action: PayloadAction<CartProductState>) {
+    addProduct(state, action: PayloadAction<Product>) {
       const findProduct = state.products.find(
         (product) => product.id === action.payload.id
       );
