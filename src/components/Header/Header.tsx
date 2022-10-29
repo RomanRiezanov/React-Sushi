@@ -40,7 +40,7 @@ const Header = () => {
             </div>
           </div>
         </Link>
-        {location.pathname !== "/cart" && <Search />}
+        {location.pathname === "/" && <Search />}
         <div>
           <Link to="/cart" className="button button--cart">
             <span>{totalPrice} ₴</span>
