@@ -24,7 +24,6 @@ const PRODUCT_SRC = "./assets/img/";
 
 const CartProduct = ({
   title,
-  compound,
   count,
   price,
   src,
@@ -59,9 +58,11 @@ const CartProduct = ({
       </div>
       <div className={classes.cart__item_info}>
         <h3>{title}</h3>
-        <span>
-          {weight}гр.{amount}шт.
-        </span>
+        {weight && (
+          <span>
+            {weight}гр.{amount}шт.
+          </span>
+        )}
       </div>
       <div className={classes.cart__item_count}>
         <div

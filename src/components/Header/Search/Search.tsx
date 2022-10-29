@@ -1,8 +1,7 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState, useCallback } from "react";
 import { useRef } from "react";
 import debounce from "lodash.debounce";
 import styles from "./Search.module.scss";
-import { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFilter } from "../../../redux/slices/filter/selectors";
 import { setSearchValue } from "../../../redux/slices/filter/slice";
@@ -19,6 +18,7 @@ const Search = () => {
     searchInput.current?.focus();
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateSearchValue = useCallback(
     debounce((value) => dispatch(setSearchValue(value)), 500),
     []

@@ -10,10 +10,10 @@ const Error404 = () => {
           <h1>404</h1>
         </div>
         <div className={classes.contant_box_404}>
-          <h3>Look like you're lost</h3>
-          <p>the page you are looking for not avaible!</p>
+          <h3>Схоже, що ти заблукав</h3>
+          <p>сторінка, яку ти шукаєш, не існує</p>
           <Link to="/" className={classes.link_404}>
-            Go to Home
+            Повернутися на головну
           </Link>
         </div>
       </div>
