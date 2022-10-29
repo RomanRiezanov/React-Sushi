@@ -6,26 +6,11 @@ import classes from "./CartWithOrder.module.scss";
 import { Link } from "react-router-dom";
 import { selectCart } from "../../../../redux/slices/cart/selectors";
 import { clearProducts } from "../../../../redux/slices/cart/slice";
-import { CartProductState } from "../../../../redux/slices/cart/types";
-
-interface Product {
-  alt: string;
-  amount: number;
-  compound: string;
-  count: number;
-  id: number;
-  price: number;
-  src: string;
-  title: string;
-  weight: number;
-}
+import { Product } from "../../../../redux/slices/products/types";
 
 const CartWithOrder = () => {
   const dispatch = useDispatch();
-  const {
-    totalPrice,
-    products,
-  }: { totalPrice: number; products: CartProductState[] } =
+  const { totalPrice, products }: { totalPrice: number; products: Product[] } =
     useSelector(selectCart);
 
   const clearCart = () => {

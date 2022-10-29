@@ -51,6 +51,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-width: 100px;
     @media (max-width: $small-mobile) {
       grid-area: count;
     }
