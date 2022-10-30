@@ -17,7 +17,7 @@ interface SushiItemProps {
   id: number;
 }
 
-const SUSHI_SET_SRC = "./assets/img/";
+const SUSHI_SET_SRC = "./React-Sushi/assets/img/";
 
 const SushiItem = ({
   title,

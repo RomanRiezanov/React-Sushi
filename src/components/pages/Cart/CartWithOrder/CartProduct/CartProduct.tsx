@@ -20,7 +20,7 @@ interface CartProductProps {
   amount: number;
 }
 
-const PRODUCT_SRC = "./assets/img/";
+const PRODUCT_SRC = "./React-Sushi/assets/img/";
 
 const CartProduct = ({
   title,

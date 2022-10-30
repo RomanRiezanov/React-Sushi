@@ -13,7 +13,10 @@ const CartEmpty = () => {
         <br />
         Щоб зробити замовлення, перейди на головну сторінку.
       </p>
-      <img src="./assets/img/icons/empty-cart.png" alt="Empty cart" />
+      <img
+        src="./React-Sushi/assets/img/icons/empty-cart.png"
+        alt="Empty cart"
+      />
       <Link to="/" className="button button--black">
         <span>Повернутися назад</span>
       </Link>

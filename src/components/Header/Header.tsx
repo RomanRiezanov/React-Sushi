@@ -31,7 +31,7 @@ const Header = () => {
             <img
               width={50}
               height={50}
-              src="./assets/img/logo/sushi-logo.png"
+              src="./React-Sushi/assets/img/logo/sushi-logo.png"
               alt="Sushi logo"
             />
             <div>
