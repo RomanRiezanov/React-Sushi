@@ -1,0 +1,39 @@
+@import "../../../scss/shared/variables.scss";
+@import "../../../scss/shared/mixins.scss";
+
+.container {
+  position: relative;
+  width: 30%;
+  @media (max-width: $mobile) {
+    margin: 10px 0;
+    width: 300px;
+  }
+}
+
+.input {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  &:focus {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 22px;
+  opacity: 0.5;
+}
+
+.closeIcon {
+  top: 10px;
+  width: 28px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}

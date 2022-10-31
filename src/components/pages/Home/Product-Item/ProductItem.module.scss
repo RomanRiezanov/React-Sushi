@@ -1,0 +1,48 @@
+@import "../../../../scss/shared/variables.scss";
+@import "../../../../scss/shared/mixins.scss";
+
+.sushiBlock {
+  width: 280px;
+  text-align: center;
+  margin-bottom: 65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  &__image {
+    width: 260px;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1%;
+    margin-bottom: 20px;
+  }
+
+  &__description {
+    text-align: start;
+    font-size: 14px;
+    p {
+      color: #6e6e6e;
+    }
+    span {
+      color: #000000;
+      font-weight: 900;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  &__price {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: 0.015em;
+  }
+}
