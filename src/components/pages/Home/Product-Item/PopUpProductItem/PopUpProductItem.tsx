@@ -15,7 +15,7 @@ interface PopUpProductItemProps {
   count: number;
 }
 
-const SUSHI_SET_SRC = "./assets/img/";
+const SUSHI_SET_SRC = "./React-Sushi/assets/img/";
 
 const PopUpProductItem = ({
   title,
