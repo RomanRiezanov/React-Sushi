@@ -16,6 +16,8 @@
   opacity: 0;
   transition: all 0.3s ease-in;
   pointer-events: none;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 .productBlock.active {
