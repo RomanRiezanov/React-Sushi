@@ -26,7 +26,7 @@ const CartWithOrder = () => {
     <div className="cart">
       <div className={classes.cart__top}>
         <h2 className={classes.content__title}>
-          <img src="./React-Sushi/assets/img/icons/cart.png" alt="cart" />
+          <img src="./assets/img/icons/cart.png" alt="cart" />
           Кошик
         </h2>
         <div className={classes.cart__clear} onClick={clearCart}>

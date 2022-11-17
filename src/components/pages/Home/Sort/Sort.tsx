@@ -18,7 +18,7 @@ type ClickOutside = MouseEvent & {
   path: Node[];
 };
 
-const ARROW_SRC = "./React-Sushi/assets/img/arrows/";
+const ARROW_SRC = "./assets/img/arrows/";
 
 export const sortedList: ActiveSort[] = [
   {
